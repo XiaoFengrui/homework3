@@ -1,6 +1,6 @@
 # include"ConnectedComponentLabeling.h"
 //#define IMG_SHOW
-int ustc_ConnectedComponentLabeling(Mat grayImg, Mat& labelingImg, int bin_th)
+int ustc_ConnectedComponentLabeling(Mat grayImg, Mat& labellingImg, int bin_th)
 {
 	int Rows = grayImg.rows;
 	int Cols = grayImg.cols;
@@ -13,15 +13,15 @@ int ustc_ConnectedComponentLabeling(Mat grayImg, Mat& labelingImg, int bin_th)
 	{
 		for (int j = 0; j < Cols; j++)
 		{
-			labelingImg.data[i*Cols + j] = 0;
+			labellingImg.data[i*Cols + j] = 0;
 		}
 	}
-	if (binaryImg.data == NULL || labelingImg.data == NULL)
+	if (binaryImg.data == NULL || labellingImg.data == NULL)
 	{
 		cout << "pic does not exist" << endl;
 		return MY_FAIL;
 	}
-	if (Rows != labelingImg.rows || Cols != labelingImg.cols)
+	if (Rows != labellingImg.rows || Cols != labellingImg.cols)
 	{
 		cout << "size error" << endl;
 		return MY_FAIL;
@@ -55,25 +55,25 @@ int ustc_ConnectedComponentLabeling(Mat grayImg, Mat& labelingImg, int bin_th)
 				switch (n)
 				{
 				case 0:
-					((int*)labelingImg.data)[i*Cols + j] = label;
+					((int*)labellingImg.data)[i*Cols + j] = label;
 					scan_1dim[label]= label;
 					label++;
 					break;
 				case 1:
-					((int*)labelingImg.data)[i*Cols + j] = ((int*)labelingImg.data)[(i - 1)*Cols + j + 1];
+					((int*)labellingImg.data)[i*Cols + j] = ((int*)labellingImg.data)[(i - 1)*Cols + j + 1];
 					break;
 				case 2:
-					((int*)labelingImg.data)[i*Cols + j] = ((int*)labelingImg.data)[(i - 1)*Cols + j];
+					((int*)labellingImg.data)[i*Cols + j] = ((int*)labellingImg.data)[(i - 1)*Cols + j];
 					break;
 				case 3:
-					((int*)labelingImg.data)[i*Cols + j] = ((int*)labelingImg.data)[(i - 1)*Cols + j];
+					((int*)labellingImg.data)[i*Cols + j] = ((int*)labellingImg.data)[(i - 1)*Cols + j];
 					break;
 				case 4:
-					((int*)labelingImg.data)[i*Cols + j] = ((int*)labelingImg.data)[(i - 1)*Cols + j - 1];
+					((int*)labellingImg.data)[i*Cols + j] = ((int*)labellingImg.data)[(i - 1)*Cols + j - 1];
 					break;
 				case 5:
-					a = scan_1dim[((int*)labelingImg.data)[(i - 1)*Cols + j - 1]];
-					b = scan_1dim[((int*)labelingImg.data)[(i - 1)*Cols + j + 1]];
+					a = scan_1dim[((int*)labellingImg.data)[(i - 1)*Cols + j - 1]];
+					b = scan_1dim[((int*)labellingImg.data)[(i - 1)*Cols + j + 1]];
 					if (a <= b)
 					{
 						max = b;
@@ -89,20 +89,20 @@ int ustc_ConnectedComponentLabeling(Mat grayImg, Mat& labelingImg, int bin_th)
 						if (scan_1dim[m] == max)
 							scan_1dim[m] = min;
 					}
-					((int*)labelingImg.data)[i*Cols + j] = min;
+					((int*)labellingImg.data)[i*Cols + j] = min;
 					break;
 				case 6:
-					((int*)labelingImg.data)[i*Cols + j] = ((int*)labelingImg.data)[(i - 1)*Cols + j - 1];
+					((int*)labellingImg.data)[i*Cols + j] = ((int*)labellingImg.data)[(i - 1)*Cols + j - 1];
 					break;
 				case 7:
-					((int*)labelingImg.data)[i*Cols + j] = ((int*)labelingImg.data)[(i - 1)*Cols + j - 1];
+					((int*)labellingImg.data)[i*Cols + j] = ((int*)labellingImg.data)[(i - 1)*Cols + j - 1];
 					break;
 				case 8:
-					((int*)labelingImg.data)[i*Cols + j] = ((int*)labelingImg.data)[i*Cols + j - 1];
+					((int*)labellingImg.data)[i*Cols + j] = ((int*)labellingImg.data)[i*Cols + j - 1];
 					break;
 				case 9:
-					a = scan_1dim[((int*)labelingImg.data)[i*Cols + j - 1]];
-					b = scan_1dim[((int*)labelingImg.data)[(i - 1)*Cols + j + 1]];
+					a = scan_1dim[((int*)labellingImg.data)[i*Cols + j - 1]];
+					b = scan_1dim[((int*)labellingImg.data)[(i - 1)*Cols + j + 1]];
 					if (a<= b)
 					{
 						max = b;
@@ -118,20 +118,20 @@ int ustc_ConnectedComponentLabeling(Mat grayImg, Mat& labelingImg, int bin_th)
 						if (scan_1dim[m] == max)
 							scan_1dim[m] = min;
 					}
-					((int*)labelingImg.data)[i*Cols + j] = min;
+					((int*)labellingImg.data)[i*Cols + j] = min;
 					break;
 				case 10:
-					((int*)labelingImg.data)[i*Cols + j] = ((int*)labelingImg.data)[i*Cols + j - 1];
+					((int*)labellingImg.data)[i*Cols + j] = ((int*)labellingImg.data)[i*Cols + j - 1];
 					break;
 				case 11:
-					((int*)labelingImg.data)[i*Cols + j] = ((int*)labelingImg.data)[i*Cols + j - 1];
+					((int*)labellingImg.data)[i*Cols + j] = ((int*)labellingImg.data)[i*Cols + j - 1];
 					break;
 				case 12:
-					((int*)labelingImg.data)[i*Cols + j] = ((int*)labelingImg.data)[i*Cols + j - 1];
+					((int*)labellingImg.data)[i*Cols + j] = ((int*)labellingImg.data)[i*Cols + j - 1];
 					break;
 				case 13:
-					a = scan_1dim[((int*)labelingImg.data)[i*Cols + j - 1]];
-					b = scan_1dim[((int*)labelingImg.data)[(i - 1)*Cols + j + 1]];
+					a = scan_1dim[((int*)labellingImg.data)[i*Cols + j - 1]];
+					b = scan_1dim[((int*)labellingImg.data)[(i - 1)*Cols + j + 1]];
 					if (a <= b)
 					{
 						max = b;
@@ -147,13 +147,13 @@ int ustc_ConnectedComponentLabeling(Mat grayImg, Mat& labelingImg, int bin_th)
 						if (scan_1dim[m] == max)
 							scan_1dim[m] = min;
 					}
-					((int*)labelingImg.data)[i*Cols + j] = min;
+					((int*)labellingImg.data)[i*Cols + j] = min;
 					break;
 				case 14:
-					((int*)labelingImg.data)[i*Cols + j] = ((int*)labelingImg.data)[i*Cols + j - 1];
+					((int*)labellingImg.data)[i*Cols + j] = ((int*)labellingImg.data)[i*Cols + j - 1];
 					break;
 				case 15:
-					((int*)labelingImg.data)[i*Cols + j] = ((int*)labelingImg.data)[i*Cols + j - 1];
+					((int*)labellingImg.data)[i*Cols + j] = ((int*)labellingImg.data)[i*Cols + j - 1];
 					break;
 				}
 			}
@@ -164,9 +164,9 @@ int ustc_ConnectedComponentLabeling(Mat grayImg, Mat& labelingImg, int bin_th)
 	{
 		for (int j = 0; j < Cols; j++)
 		{
-			if (((int*)labelingImg.data)[i*Cols + j])
+			if (((int*)labellingImg.data)[i*Cols + j])
 			{
-				((int*)labelingImg.data)[i*Cols + j] = scan_1dim[((int*)labelingImg.data)[i*Cols + j]];
+				((int*)labellingImg.data)[i*Cols + j] = scan_1dim[((int*)labellingImg.data)[i*Cols + j]];
 			}
 		}
 	}
@@ -188,4 +188,4 @@ int ustc_ConnectedComponentLabeling(Mat grayImg, Mat& labelingImg, int bin_th)
 	waitKey();
 #endif
 
-}
+} 
